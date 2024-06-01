@@ -1,5 +1,7 @@
 body {
-    background-color: #000000b2;
+    background-color: hsla(0, 0%, 0%, 0.698);
+    background: linear-gradient(-0.25turn, #363636, #b1b0b0);
+    
     margin: 0;
 }
 
@@ -10,7 +12,7 @@ header {
     align-items: center;
     background: linear-gradient(0.25turn, #000000, #ffffff);
     height: 6rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 header h1 {
@@ -21,13 +23,29 @@ header h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 10px 10px 20px  black;
+
+    animation: 3s bigger infinite;
+}
+
+@keyframes bigger {
+    from {
+        font-size: 10px;
+    }
+
+    to {
+        font: 100px;
+    }
 }
 
 
 #score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #000000;
-    width: 10rem;
-    margin-bottom: 15px;
+    width: 15rem;
+    margin-bottom: 2rem;
+    margin-left: 1.5rem;
 }
 
 #score p {
@@ -69,4 +87,22 @@ table, tr, td
 td
 {
     background-color: white;
+}
+
+
+#endMenu {
+    display: none;
+    background-color: pink;
+}
+
+#endMenu #isRestart {
+    background-color: transparent;
+    animation: 1.12s clignoter infinite;
+    transition: none;
+}
+
+@keyframes clignoter {
+    0% {opacity: 1;}
+    40% {opacity: 0;}
+    100% {opacity: 1;}
 }

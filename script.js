@@ -1,12 +1,7 @@
-const row1 = document.getElementById("row1");
-const row2 = document.getElementById("row2");
-const row3 = document.getElementById("row3");
-const rows = [row1, row2, row3];
-let board = [];
-let nbCol = 3;
-colors = ["white", "black"]
-
 function initialization(isFirst=true) {
+    boardCase.style.display = "flex";
+    endMenu.style.display = "none";
+    nbClick = 0; scoreText.textContent = `Numbers of click : ${nbClick}`;
     if (isFirst) {
         for (let i=0; i<rows.length; i++) {
             col = [];
@@ -31,9 +26,6 @@ function initialization(isFirst=true) {
     
 }
 
-initialization()
-
-
 function changeColor(item) {
     if (item[0].style.backgroundColor == colors[0]) {
         item[0].style.backgroundColor = colors[1]
@@ -46,17 +38,10 @@ function changeColor(item) {
 }
 
 function verif() {
-
     listCase = [
-        board[0][0][1],
-        board[0][1][1],
-        board[0][2][1],
-        board[1][0][1],
-        board[1][1][1],
-        board[1][2][1],
-        board[2][0][1],
-        board[2][1][1],
-        board[2][2][1]
+        board[0][0][1], board[0][1][1], board[0][2][1],
+        board[1][0][1], board[1][1][1], board[1][2][1],
+        board[2][0][1], board[2][1][1], board[2][2][1]
     ]
     if( listCase.includes(colors[0]) ) {
         if ( listCase.includes(colors[1]) ) {
@@ -71,14 +56,11 @@ function verif() {
             return true
         }
     }
-
-    
-
-
 }
 
 
 function restart() {
+    /*
     let isRestart = prompt("THE END !!! Enter restart to restart");
     if (isRestart.toLowerCase() == "restart") {
         initialization(false)
@@ -86,12 +68,47 @@ function restart() {
         alert("I say restart ! Else quit !!")
         restart()
     }
+    */
+
+    boardCase.style.display = "none";
+    endMenu.style.display = "block";
+    /*endMenu.addEventListener("click", (e) => {
+        initialization(false)
+    })*/
+
+   isRestart.addEventListener("click", (e) => {
+        initialization(false)
+        console.log("Valid")
+   })
 }
+
+
+
+const boardCase = document.getElementById("board");
+const row1 = document.getElementById("row1");
+const row2 = document.getElementById("row2");
+const row3 = document.getElementById("row3");
+const scoreText = document.getElementById("scoreText");
+const rows = [row1, row2, row3];
+const endMenu = document.getElementById("endMenu");
+const isRestart = document.getElementById("isRestart");
+const colors = ["white", "black"];
+let board = [];
+let nbCol = 3;
+let nbClick = 0;
+
+
+initialization()
+
+
+
 
 for ( let row = 0; row < rows.length; row++ ) {
     for ( let col = 0; col < nbCol; col++ ) {
         board[row][col][0].addEventListener("click", (e) => {
             
+            nbClick++
+            scoreText.textContent = `Numbers of click : ${nbClick}`
             
             changeColor(board[row][col]);
             if (row+1 <= 2) {changeColor(board[row+1][col])};
