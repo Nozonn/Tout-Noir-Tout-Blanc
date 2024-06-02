@@ -41,11 +41,27 @@ header h1 {
 #score {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
     justify-content: center;
     border: 1px solid #000000;
-    width: 15rem;
-    margin-bottom: 2rem;
-    margin-left: 1.5rem;
+    width: auto;
+    padding: 0px 20px 0px 20px;
+    border-radius: 10em;
+
+}
+
+#containerScore {
+    margin-right: 10rem;
+}
+
+#containerBestScore {
+    margin-left: 10rem;
 }
 
 #score p {
@@ -64,12 +80,12 @@ header h1 {
 #board
 {
     display: flex;
-    background-color: rgb(57, 64, 71);
+    background-color: rgba(0, 0, 0, 0.747);
     width: 40rem;
     height: 500px;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid rgb(119, 118, 118);
     border-radius: 50%;
     box-shadow: 10px 10px 10px black;
 
@@ -77,7 +93,7 @@ header h1 {
 
 table, tr, td
 {
-    border: 2px solid black;
+    border: 2px solid rgb(119, 118, 118);
     border-collapse:collapse;
     width: 300px;
     height: 100px;
@@ -92,7 +108,8 @@ td
 
 #endMenu {
     display: none;
-    background-color: pink;
+    background-color: transparent;
+    margin-top: 5em;
 }
 
 #endMenu #isRestart {
@@ -105,4 +122,25 @@ td
     0% {opacity: 1;}
     40% {opacity: 0;}
     100% {opacity: 1;}
+}
+
+#end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10rem;
+
+    margin-bottom: 10rem;
+
+    box-shadow: 10px 10px 100px 50px black;
+
+    animation: 2s spawning;
+}
+
+@keyframes spawning {
+    from {
+        margin-left: 100%;
+        transform: rotate(360deg);
+    }
 }

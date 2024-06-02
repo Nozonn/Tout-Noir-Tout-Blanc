@@ -1,7 +1,8 @@
 function initialization(isFirst=true) {
+    let color;
     boardCase.style.display = "flex";
     endMenu.style.display = "none";
-    nbClick = 0; scoreText.textContent = `Numbers of click : ${nbClick}`;
+    nbClick = 0; scoreText.textContent = `Number of clicks : ${nbClick}`;
     if (isFirst) {
         for (let i=0; i<rows.length; i++) {
             col = [];
@@ -23,6 +24,8 @@ function initialization(isFirst=true) {
             }
         }
     }
+
+    verif() ? restart() : {};
     
 }
 
@@ -60,26 +63,17 @@ function verif() {
 
 
 function restart() {
-    /*
-    let isRestart = prompt("THE END !!! Enter restart to restart");
-    if (isRestart.toLowerCase() == "restart") {
-        initialization(false)
-    } else {
-        alert("I say restart ! Else quit !!")
-        restart()
-    }
-    */
-
     boardCase.style.display = "none";
     endMenu.style.display = "block";
-    /*endMenu.addEventListener("click", (e) => {
-        initialization(false)
-    })*/
 
-   isRestart.addEventListener("click", (e) => {
+    if (bestScoreVal == null || nbClick < bestScoreVal) {
+        bestScoreVal = nbClick
+        bestScore.textContent = `Number minimum of clicks : ${bestScoreVal}`
+    }
+
+    isRestart.addEventListener("click", (e) => {
         initialization(false)
-        console.log("Valid")
-   })
+    })
 }
 
 
@@ -89,6 +83,7 @@ const row1 = document.getElementById("row1");
 const row2 = document.getElementById("row2");
 const row3 = document.getElementById("row3");
 const scoreText = document.getElementById("scoreText");
+const bestScore = document.getElementById("bestScore");
 const rows = [row1, row2, row3];
 const endMenu = document.getElementById("endMenu");
 const isRestart = document.getElementById("isRestart");
@@ -96,6 +91,7 @@ const colors = ["white", "black"];
 let board = [];
 let nbCol = 3;
 let nbClick = 0;
+let bestScoreVal;
 
 
 initialization()
