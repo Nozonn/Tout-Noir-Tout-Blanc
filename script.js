@@ -62,13 +62,24 @@ function verif() {
 }
 
 
+function scoreGestion(idText) {
+    endMessage.textContent = endMess[idText];
+    bestScoreVal = nbClick;
+    bestScore.textContent = `Number minimum of clicks : ${bestScoreVal}`;
+}
+
 function restart() {
     boardCase.style.display = "none";
-    endMenu.style.display = "block";
+    endMenu.style.display = "flex";
 
-    if (bestScoreVal == null || nbClick < bestScoreVal) {
-        bestScoreVal = nbClick
-        bestScore.textContent = `Number minimum of clicks : ${bestScoreVal}`
+    if (bestScoreVal == null) {
+        scoreGestion(0);
+    } else if (bestScoreVal == 0) {
+        scoreGestion(3);
+    } else if (nbClick < bestScoreVal) {
+        scoreGestion(1);
+    } else {
+        endMessage.textContent = endMess[2];
     }
 
     isRestart.addEventListener("click", (e) => {
@@ -84,19 +95,25 @@ const row2 = document.getElementById("row2");
 const row3 = document.getElementById("row3");
 const scoreText = document.getElementById("scoreText");
 const bestScore = document.getElementById("bestScore");
-const rows = [row1, row2, row3];
 const endMenu = document.getElementById("endMenu");
+const endMessage = document.getElementById("endMessage");
 const isRestart = document.getElementById("isRestart");
+
+
+const rows = [row1, row2, row3];
 const colors = ["white", "black"];
+const endMess = [
+    "It's your first attempt. Play Again ! ",
+    "You beat your score ! GOOD JOB !!",
+    "GAME OVER ! Try Again !",
+    "WHAOU !!! 0 click !! You're lucky !!"
+]
 let board = [];
 let nbCol = 3;
 let nbClick = 0;
-let bestScoreVal;
-
+let bestScoreVal = null;
 
 initialization()
-
-
 
 
 for ( let row = 0; row < rows.length; row++ ) {
@@ -112,7 +129,7 @@ for ( let row = 0; row < rows.length; row++ ) {
             if (col+1 <= 2) {changeColor(board[row][col+1])};
             if (col-1 >= 0) {changeColor(board[row][col-1])};
 
-            verif() ? [console.log("True"), restart()] : {}
+            verif() ? restart() : {}
 
         })
     }
