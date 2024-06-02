@@ -144,3 +144,17 @@ td
         transform: rotate(360deg);
     }
 }
+
+@media all and (max-width: 550px) {
+    .container {
+        padding: 0 5px 0 5px;
+    }
+
+    #containerScore {
+        margin: 0;
+    }
+    
+    #containerBestScore {
+        margin: 0;
+    }
+}
