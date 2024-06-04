@@ -72,15 +72,12 @@ function restart() {
     boardCase.style.display = "none";
     endMenu.style.display = "flex";
 
-    if (bestScoreVal == null) {
-        scoreGestion(0);
-    } else if (bestScoreVal == 0) {
-        scoreGestion(3);
-    } else if (nbClick < bestScoreVal) {
-        scoreGestion(1);
-    } else {
-        endMessage.textContent = endMess[2];
-    }
+    if (bestScoreVal == null) {scoreGestion(0);} 
+    else if (nbClick == 0) {scoreGestion(4);} 
+    else if (nbClick == 0 && bestScoreVal == 0) {scoreGestion(5);}
+    else if (nbClick < bestScoreVal) {scoreGestion(1);} 
+    else if (nbClick == bestScoreVal) {scoreGestion(3);} 
+    else {endMessage.textContent = endMess[2];}
 
     isRestart.addEventListener("click", (e) => {
         initialization(false)
@@ -106,7 +103,9 @@ const endMess = [
     "It's your first attempt. Play Again ! ",
     "You beat your score ! GOOD JOB !!",
     "GAME OVER ! Try Again !",
-    "WHAOU !!! 0 click !! You're lucky !!"
+    "Almost you win !! Try Again to beat your best score !",
+    "WHAOU !!! 0 click !! You're lucky !!",
+    "You cannot do better !! It's not a big deal !"
 ]
 let board = [];
 let nbCol = 3;
